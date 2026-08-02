@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Fetch Twilda import payloads from public staging on artometrics-web. */
+/** Fetch Twilda import payloads from public staging on artometrics-web into repo paths. */
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
@@ -33,7 +33,7 @@ async function main() {
       url: `${BASE}/ch${i}.txt`,
       dest: `src/apps/novelcrafter/content/gatsby/ch${i}.txt`,
     })),
-    { url: `${BASE}/gatsby-chapters.ts`, dest: "src/apps/novelcrafter/gatsby-chapters.generated.ts" },
+    { url: `${BASE}/gatsby-chapters.ts`, dest: "src/apps/novelcrafter/gatsby-chapters.ts" },
     { url: `${BASE}/package-lock.json`, dest: "package-lock.json" },
   ];
   for (const f of files) {
