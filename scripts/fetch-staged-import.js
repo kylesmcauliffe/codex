@@ -36,12 +36,30 @@ async function main() {
     { url: `${BASE}/gatsby-chapters.ts`, dest: "src/apps/novelcrafter/gatsby-chapters.ts" },
     { url: `${BASE}/package-lock.json`, dest: "package-lock.json" },
   ];
+  const partCounts = { 1: 7, 2: 5, 3: 6, 4: 6, 5: 5, 6: 5, 7: 9, 8: 5, 9: 6 };
+  for (const [ch, n] of Object.entries(partCounts)) {
+    for (let i = 0; i < n; i++) {
+      files.push({
+        url: `${BASE}/parts/ch${ch}.p${i}.ts`,
+        dest: `src/apps/novelcrafter/content/gatsby/ch${ch}.p${i}.ts`,
+        optional: true,
+      });
+    }
+  }
   for (const f of files) {
-    const buf = await get(f.url);
-    const dest = path.join(root, f.dest);
-    fs.mkdirSync(path.dirname(dest), { recursive: true });
-    fs.writeFileSync(dest, buf);
-    console.log("wrote", f.dest, buf.length);
+    try {
+      const buf = await get(f.url);
+      const dest = path.join(root, f.dest);
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, buf);
+      console.log("wrote", f.dest, buf.length);
+    } catch (e) {
+      if (f.optional) {
+        console.warn("skip optional", f.dest, String(e.message || e));
+      } else {
+        throw e;
+      }
+    }
   }
 }
 
