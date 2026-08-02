@@ -1,1 +1,1 @@
-{{file:/agent/repos/twilda/src/apps/novelcrafter/content/gatsby/ch2.txt}}
+@file:///tmp/ch2-for-mcp.txt
