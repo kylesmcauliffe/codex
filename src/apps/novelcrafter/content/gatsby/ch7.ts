@@ -5,4 +5,6 @@ import { p as p3 } from './ch7.p3';
 import { p as p4 } from './ch7.p4';
 import { p as p5 } from './ch7.p5';
 import { p as p6 } from './ch7.p6';
-export const text = p0 + p1 + p2 + p3 + p4 + p5 + p6;
+import { p as p7 } from './ch7.p7';
+import { p as p8 } from './ch7.p8';
+export const text = p0 + p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8;
